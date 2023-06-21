@@ -1,6 +1,6 @@
 {
-  "name": "@awesome-cdk/cdk-report-codepipeline-status-to-github",
-  "version": "0.0.0",
+  "name": "@rsc-iot/cdk-report-codepipeline-status-to-github",
+  "version": "0.1.0",
   "publishConfig": {
     "access": "public"
   },
@@ -19,6 +19,9 @@
   },
   "repository": {
     "url": "git+https://github.com/awesome-cdk/cdk-report-codepipeline-status-to-github.git"
+  },
+  "publishConfig": {
+    "registry": "https://iot-122570265265.d.codeartifact.us-east-1.amazonaws.com/npm/npm-store/"
   },
   "keywords": [
     "aws-cdk",

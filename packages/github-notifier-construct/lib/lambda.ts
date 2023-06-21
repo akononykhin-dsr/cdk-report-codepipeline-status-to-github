@@ -56,11 +56,18 @@ function createPayload(pipelineName: string, region: string, status: string) {
         description = 'Build failed!';
     }
 
+    let statusContext = (
+      !!process.env.STATUS_CONTEXT
+      ? process.env.STATUS_CONTEXT as string
+      : `ci/${pipelineName}/${region}`
+    );
+
+
     return {
-        state: status,
-        'target_url': buildCodePipelineUrl(pipelineName, region),
-        description: description,
-        context: `ci/${pipelineName}/${region}`
+      state: status,
+      'target_url': buildCodePipelineUrl(pipelineName, region),
+      description: description,
+      context: statusContext,
     };
 }
 

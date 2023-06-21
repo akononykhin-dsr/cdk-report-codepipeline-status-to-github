@@ -17,6 +17,7 @@ export class CodePipelinePostToGitHub extends Construct {
     private props: {
       pipeline: aws_codepipeline.IPipeline;
       githubToken: aws_ssm.IStringParameter | string;
+      statusContext?: string;
     }
   ) {
     super(scope, id);
@@ -41,6 +42,9 @@ export class CodePipelinePostToGitHub extends Construct {
 
     // Allow the Lambda to post to a private GitHub API on behalf of the repo owner
     lambda.addEnvironment("ACCESS_TOKEN", accessToken);
+    if (props.statusContext) {
+        lambda.addEnvironment("STATUS_CONTEXT", props.statusContext);
+    }
 
     this.props.pipeline.onStateChange("onStateChange", {
       target: new aws_events_targets.LambdaFunction(lambda),
